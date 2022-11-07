@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "rsa.hpp"
 
 using namespace std;
@@ -19,13 +20,37 @@ int gcd(int a, int b);
 void rsa(double prime1, double prime2);
 
 int main() {
+    ifstream f("sample.txt");
+    string str;
+    if (f) {
+        ostringstream ss;
+        ss << f.rdbuf();
+        str = ss.str();
+    }
+    cout<<str << "\n";
+    // fstream text;
+    // text.open("sample.txt", ios::in);
+    // if (!text) {
+    //     cout << "error in file read\n";
+    // } else {
+    //     cout << "file read successfully\n";
+    //     string ch;
+    //     while (1) {
+    //         text >> ch;
+    //         if (text.eof()) {
+    //             break;
+    //         }
+    //         cout << ch;
+    //     }
+    // }
+    // text.close();
     double num1;
     double num2;
     cout << "Please enter two prime numbers: \n";
     cin >> num1;
     cin >> num2;
     rsa(num1, num2);
-    return 1;
+    return 0;
 
 
 }
